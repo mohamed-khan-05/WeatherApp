@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.weatherapi.com/v1/current.json?key=4e03909d73d64155a33111639252101&q=${city}`
+        `https://api.weatherapi.com/v1/current.json?key=4e03909d73d64155a33111639252101&q=${city}`
       )
       .then((res) => {
         setData(res.data);
