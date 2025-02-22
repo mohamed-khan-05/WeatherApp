@@ -1,38 +1,36 @@
 import React, { useState } from "react";
+import { FaSearch, FaTimes } from "react-icons/fa";
 
-const Selector = (props) => {
-  const { setCity } = props;
+const Selector = ({ setCity }) => {
   const [text, setText] = useState("");
-  const handleClick = () => {
-    setCity(text);
+
+  const handleSearch = () => {
+    if (text.trim()) setCity(text);
   };
+
   return (
-    <div className="absolute top-[100px] text-[1.2rem]">
+    <div className="flex items-center justify-center mb-6">
       <input
-        className="w-[300px] border-b-2 pl-5"
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-        placeholder="Enter a City, Region or Code"
+        className="w-[350px] p-3 rounded-l-full border-none outline-none shadow-md text-black"
+        onChange={(e) => setText(e.target.value)}
+        placeholder="🌍 Enter city, region, or postal code"
         value={text}
         type="text"
       />
       <button
-        className="ml-3 border-2 p-1 rounded-md"
-        onClick={() => {
-          handleClick();
-        }}
+        className="bg-blue-500 text-white px-4 py-3 rounded-r-full hover:bg-blue-600"
+        onClick={handleSearch}
       >
-        Search
+        <FaSearch />
       </button>
-      <button
-        onClick={() => {
-          setText("");
-        }}
-        className="ml-3 border-2 p-1 rounded-md"
-      >
-        Clear
-      </button>
+      {text && (
+        <button
+          className="ml-2 text-red-500 hover:text-red-700"
+          onClick={() => setText("")}
+        >
+          <FaTimes />
+        </button>
+      )}
     </div>
   );
 };
